@@ -1,0 +1,32 @@
+.reportes {
+    padding: 20px;
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    .selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+  
+      label {
+        margin-right: 10px;
+        font-size: 1rem;
+      }
+  
+      select {
+        padding: 5px;
+        font-size: 1rem;
+      }
+    }
+  
+    .sensorDataContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
