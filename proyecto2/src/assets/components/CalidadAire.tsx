@@ -1,6 +1,6 @@
 import React from 'react';
 import useFetch from '../hooks/UseFetch';
-import styles from './styles/CalidadAire.scss';
+import styles from './styles/CalidadAire.module.scss';
 
 const CalidadAire: React.FC = () => {
   const { data, loading, error } = useFetch('http://localhost:5000/api/aire');

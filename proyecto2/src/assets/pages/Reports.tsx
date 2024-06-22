@@ -6,7 +6,7 @@ import VelocidadViento from '../components/VelocidadViento';
 import Luminosidad from '../components/Luminosidad';
 import CalidadAire from '../components/CalidadAire';
 import Presion from '../components/Presion';
-import styles from './styles/Reports.scss';
+import styles from './styles/Reports.module.scss';
 
 const Reportes: React.FC = () => {
   const [selectedSensor, setSelectedSensor] = useState<string>('temperatura');

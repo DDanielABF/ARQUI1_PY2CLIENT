@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles/Home.module.scss';
 
 const Home: React.FC = () => {
+    console.log('ENTRA AL HOME')
   return (
     <div className={styles.home}>
       <h2>Bienvenido a la Estación Meteorológica</h2>
@@ -37,3 +38,4 @@ const Home: React.FC = () => {
 }
 
 export default Home;
+
