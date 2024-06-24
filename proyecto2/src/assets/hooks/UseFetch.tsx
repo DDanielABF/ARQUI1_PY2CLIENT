@@ -1,4 +1,3 @@
-// Hook personalizado para realizar peticiones fetch
 import { useState, useEffect } from 'react';
 
 const useFetch = (url: string) => {
