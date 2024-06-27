@@ -1,6 +1,12 @@
+
+
+
+
+
+
 import React, { useState } from 'react';
 import styles from './styles/Reports.module.scss';
-
+import useFetch from '../hooks/UseFetch';
 const sensorData = {
   temperatura: {
     promedio: 22,
@@ -51,11 +57,18 @@ const sensorData = {
     moda: 1011,
   },
 };
+const sensorEndpoints = {
+  temperatura: 'http://localhost:5000/api/temperatura/stats',
+  humedad: 'http://localhost:5000/api/humedad/stats',
+  viento: 'http://localhost:5000/api/viento/stats',
+  luz: 'http://localhost:5000/api/luz/stats',
+  aire: 'http://localhost:5000/api/aire/stats',
+  presion: 'http://localhost:5000/api/presion/stats',
+};
 
 const Reportes: React.FC = () => {
   const [selectedSensor, setSelectedSensor] = useState<string>('temperatura');
-
-  const sensorValues = sensorData[selectedSensor];
+  const { data, loading, error } = useFetch(sensorEndpoints[selectedSensor]);
 
   return (
     <div className={styles.reportes}>
@@ -72,32 +85,35 @@ const Reportes: React.FC = () => {
         </select>
       </div>
       <div className={styles.sensorDataContainer}>
-        <table className={styles.sensorTable}>
-          <thead>
-            <tr>
-              <th>Promedio</th>
-              <th>Mediana</th>
-              <th>Desviación Estándar</th>
-              <th>Máximo</th>
-              <th>Mínimo</th>
-              <th>Moda</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{sensorValues.promedio}</td>
-              <td>{sensorValues.mediana}</td>
-              <td>{sensorValues.desviacionEstandar}</td>
-              <td>{sensorValues.maximo}</td>
-              <td>{sensorValues.minimo}</td>
-              <td>{sensorValues.moda}</td>
-            </tr>
-          </tbody>
-        </table>
+        {loading && <p>Cargando datos...</p>}
+        {error && <p>Error: {error}</p>}
+        {data && (
+          <table className={styles.sensorTable}>
+            <thead>
+              <tr>
+                <th>Promedio</th>
+                <th>Mediana</th>
+                <th>Desviación Estándar</th>
+                <th>Máximo</th>
+                <th>Mínimo</th>
+                <th>Moda</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{data.promedio}</td>
+                <td>{data.mediana}</td>
+                <td>{data.desviacionEstandar}</td>
+                <td>{data.maximo}</td>
+                <td>{data.minimo}</td>
+                <td>{data.moda}</td>
+              </tr>
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
 }
 
 export default Reportes;
-
